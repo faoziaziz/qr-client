@@ -126,8 +126,8 @@ void write_to_usb()
 	int product_id, vendor_id, class_id;
 	int rc;
 
-	vendor_id  = 0x0930;
-	product_id = 0x6544;
+	vendor_id  = 0x28e0;
+	product_id = 0x0a05;
 	class_id   = LIBUSB_HOTPLUG_MATCH_ANY;
 
 	rc = libusb_init (NULL);

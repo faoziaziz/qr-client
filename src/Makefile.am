@@ -9,7 +9,7 @@ dist_man_MANS = cgenerator.8
 ## TODO:5000 Automake will find dependencies by itself. Run
 ## TODO:5000 ./autogen.sh after modifying this file.
 
-cgenerator_SOURCES  = log.c log.h cgenerator.h cgenerator.c usb_set.h usb_set.c
+cgenerator_SOURCES  = log.c log.h cgenerator.h cgenerator.c usb_set.h usb_set.c web_serv.c web_serv.h
 cgenerator_CFLAGS   = $(AM_CFLAGS) @JANSSON_CFLAGS@
 cgenerator_LDFLAGS  = $(AM_LDFLAGS) @JANSSON_LIBS@
 

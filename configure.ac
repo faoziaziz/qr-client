@@ -71,10 +71,12 @@ PKG_CHECK_MODULES([JANSSON], [jansson >= 2.1])
 
 AC_CACHE_SAVE
 # this for checking library 
-AC_SEARCH_LIBS([], [usb-1.0], [], [
-		AC_MSG_ERROR([json-c belum diinstall])
+AC_SEARCH_LIBS([libusb_init], [usb-1.0], [], [
+		AC_MSG_ERROR([libusb-1.0 belum di install.])
 		])
-
+AC_SEARCH_LIBS([MHD_start_daemon], [microhttpd], [], [
+		AC_MSG_ERROR([libmicrohttpd belum di install.])
+		])
 AC_SUBST([MORE_CFLAGS])
 AC_SUBST([MORE_CPPFLAGS])
 AC_SUBST([MORE_LDFLAGS])

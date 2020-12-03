@@ -1,5 +1,7 @@
 
 #include "cgenerator.h"
+#include "web_serv.h"
+
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
@@ -31,6 +33,7 @@ int main(int argc, char *argv[])
 
     /* write to usb */
     write_to_usb("AzizMemangGanteng");
+    start_server();
 
     /* TODO:3001 If you want to add more options, add them here. */
     static struct option long_options[] = {

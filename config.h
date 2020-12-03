@@ -44,7 +44,7 @@
 #define PACKAGE_NAME "cgenerator"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "cgenerator 2020-11-30"
+#define PACKAGE_STRING "cgenerator "
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "cgenerator"
@@ -53,10 +53,10 @@
 #define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "2020-11-30"
+#define PACKAGE_VERSION ""
 
 /* Define to 1 if you have the ANSI C header files. */
 #define STDC_HEADERS 1
 
 /* Version number of package */
-#define VERSION "2020-11-30"
+#define VERSION ""

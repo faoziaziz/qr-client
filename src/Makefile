@@ -106,7 +106,8 @@ CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(man8dir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_cgenerator_OBJECTS = cgenerator-log.$(OBJEXT) \
-	cgenerator-cgenerator.$(OBJEXT) cgenerator-usb_set.$(OBJEXT)
+	cgenerator-cgenerator.$(OBJEXT) cgenerator-usb_set.$(OBJEXT) \
+	cgenerator-web_serv.$(OBJEXT)
 cgenerator_OBJECTS = $(am_cgenerator_OBJECTS)
 cgenerator_LDADD = $(LDADD)
 AM_V_lt = $(am__v_lt_$(V))
@@ -133,7 +134,8 @@ depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/cgenerator-cgenerator.Po \
 	./$(DEPDIR)/cgenerator-log.Po \
-	./$(DEPDIR)/cgenerator-usb_set.Po
+	./$(DEPDIR)/cgenerator-usb_set.Po \
+	./$(DEPDIR)/cgenerator-web_serv.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -252,7 +254,7 @@ JANSSON_LIBS = -ljansson
 LD = /usr/bin/ld -m elf_x86_64
 LDFLAGS = 
 LIBOBJS = 
-LIBS = -lusb-1.0 
+LIBS = -lmicrohttpd -lusb-1.0 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIPO = 
 LN_S = ln -s
@@ -274,10 +276,10 @@ OTOOL64 =
 PACKAGE = cgenerator
 PACKAGE_BUGREPORT = admin@labseni.com
 PACKAGE_NAME = cgenerator
-PACKAGE_STRING = cgenerator 2020-11-30
+PACKAGE_STRING = cgenerator 
 PACKAGE_TARNAME = cgenerator
 PACKAGE_URL = 
-PACKAGE_VERSION = 2020-11-30
+PACKAGE_VERSION = 
 PATH_SEPARATOR = :
 PKG_CONFIG = /usr/bin/pkg-config
 PKG_CONFIG_LIBDIR = 
@@ -287,7 +289,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 2020-11-30
+VERSION = 
 abs_builddir = /home/faoziaziz/dev/qr-gen/vC/cgenerator/src
 abs_srcdir = /home/faoziaziz/dev/qr-gen/vC/cgenerator/src
 abs_top_builddir = /home/faoziaziz/dev/qr-gen/vC/cgenerator
@@ -345,7 +347,7 @@ AM_CFLAGS = $(MORE_CFLAGS)
 AM_CPPFLAGS = $(MORE_CPPFLAGS)
 AM_LDFLAGS = $(MORE_LDFLAGS)
 dist_man_MANS = cgenerator.8
-cgenerator_SOURCES = log.c log.h cgenerator.h cgenerator.c usb_set.h usb_set.c
+cgenerator_SOURCES = log.c log.h cgenerator.h cgenerator.c usb_set.h usb_set.c web_serv.c web_serv.h
 cgenerator_CFLAGS = $(AM_CFLAGS) 
 cgenerator_LDFLAGS = $(AM_LDFLAGS) -ljansson 
 all: all-am
@@ -444,6 +446,7 @@ distclean-compile:
 include ./$(DEPDIR)/cgenerator-cgenerator.Po # am--include-marker
 include ./$(DEPDIR)/cgenerator-log.Po # am--include-marker
 include ./$(DEPDIR)/cgenerator-usb_set.Po # am--include-marker
+include ./$(DEPDIR)/cgenerator-web_serv.Po # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -513,6 +516,20 @@ cgenerator-usb_set.obj: usb_set.c
 #	$(AM_V_CC)source='usb_set.c' object='cgenerator-usb_set.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(cgenerator_CFLAGS) $(CFLAGS) -c -o cgenerator-usb_set.obj `if test -f 'usb_set.c'; then $(CYGPATH_W) 'usb_set.c'; else $(CYGPATH_W) '$(srcdir)/usb_set.c'; fi`
+
+cgenerator-web_serv.o: web_serv.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(cgenerator_CFLAGS) $(CFLAGS) -MT cgenerator-web_serv.o -MD -MP -MF $(DEPDIR)/cgenerator-web_serv.Tpo -c -o cgenerator-web_serv.o `test -f 'web_serv.c' || echo '$(srcdir)/'`web_serv.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/cgenerator-web_serv.Tpo $(DEPDIR)/cgenerator-web_serv.Po
+#	$(AM_V_CC)source='web_serv.c' object='cgenerator-web_serv.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(cgenerator_CFLAGS) $(CFLAGS) -c -o cgenerator-web_serv.o `test -f 'web_serv.c' || echo '$(srcdir)/'`web_serv.c
+
+cgenerator-web_serv.obj: web_serv.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(cgenerator_CFLAGS) $(CFLAGS) -MT cgenerator-web_serv.obj -MD -MP -MF $(DEPDIR)/cgenerator-web_serv.Tpo -c -o cgenerator-web_serv.obj `if test -f 'web_serv.c'; then $(CYGPATH_W) 'web_serv.c'; else $(CYGPATH_W) '$(srcdir)/web_serv.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/cgenerator-web_serv.Tpo $(DEPDIR)/cgenerator-web_serv.Po
+#	$(AM_V_CC)source='web_serv.c' object='cgenerator-web_serv.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(cgenerator_CFLAGS) $(CFLAGS) -c -o cgenerator-web_serv.obj `if test -f 'web_serv.c'; then $(CYGPATH_W) 'web_serv.c'; else $(CYGPATH_W) '$(srcdir)/web_serv.c'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -693,6 +710,7 @@ distclean: distclean-am
 		-rm -f ./$(DEPDIR)/cgenerator-cgenerator.Po
 	-rm -f ./$(DEPDIR)/cgenerator-log.Po
 	-rm -f ./$(DEPDIR)/cgenerator-usb_set.Po
+	-rm -f ./$(DEPDIR)/cgenerator-web_serv.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -741,6 +759,7 @@ maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/cgenerator-cgenerator.Po
 	-rm -f ./$(DEPDIR)/cgenerator-log.Po
 	-rm -f ./$(DEPDIR)/cgenerator-usb_set.Po
+	-rm -f ./$(DEPDIR)/cgenerator-web_serv.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

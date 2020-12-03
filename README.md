@@ -39,3 +39,15 @@ make
 sudo make install
 ```
 # qr-client
+
+3. Libmicro httpd
+LIbmicrohttpd digunakan sebagai aplikasi server dalam qr generator ini. Tujuannya untuk melakukan pertukaran data antara
+web api dengan usb.
+```bash
+wget https://ftpmirror.gnu.org/libmicrohttpd/libmicrohttpd-latest.tar.gz
+tar -zxvf tar -zxvf libmicrohttpd-latest.tar.gz
+cd libmicrohttpd-0.9.71/
+./configure --prefix=/usr
+make
+sudo make install
+```

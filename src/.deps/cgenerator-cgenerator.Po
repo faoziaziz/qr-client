@@ -32,11 +32,23 @@ cgenerator-cgenerator.o: cgenerator.c /usr/include/stdc-predef.h \
  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
  /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
- /usr/include/bits/uio_lim.h /usr/include/stdlib.h \
- /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+ /usr/include/bits/uio_lim.h /usr/include/string.h /usr/include/strings.h \
+ /usr/include/bits/strings_fortified.h \
+ /usr/include/bits/string_fortified.h /usr/include/math.h \
+ /usr/include/bits/math-vector.h /usr/include/bits/libm-simd-decl-stubs.h \
  /usr/include/bits/floatn.h /usr/include/bits/floatn-common.h \
- /usr/include/alloca.h /usr/include/bits/stdlib-bsearch.h \
- /usr/include/bits/stdlib-float.h /usr/include/bits/stdlib.h \
+ /usr/include/bits/flt-eval-method.h /usr/include/bits/fp-logb.h \
+ /usr/include/bits/fp-fast.h \
+ /usr/include/bits/mathcalls-helper-functions.h \
+ /usr/include/bits/mathcalls.h /usr/include/bits/mathcalls-narrow.h \
+ /usr/include/bits/iscanonical.h /usr/include/errno.h \
+ /usr/include/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/asm/errno.h /usr/include/asm-generic/errno.h \
+ /usr/include/asm-generic/errno-base.h /usr/include/bits/types/error_t.h \
+ /usr/include/unistd.h /usr/include/bits/posix_opt.h \
+ /usr/include/bits/environments.h /usr/include/bits/confname.h \
+ /usr/include/bits/getopt_posix.h /usr/include/bits/getopt_core.h \
+ /usr/include/bits/unistd.h /usr/include/bits/unistd_ext.h \
  /usr/include/stdio.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include/stdarg.h \
  /usr/include/bits/types/__fpos_t.h /usr/include/bits/types/__mbstate_t.h \
@@ -44,14 +56,11 @@ cgenerator-cgenerator.o: cgenerator.c /usr/include/stdc-predef.h \
  /usr/include/bits/types/FILE.h /usr/include/bits/types/struct_FILE.h \
  /usr/include/bits/types/cookie_io_functions_t.h \
  /usr/include/bits/stdio_lim.h /usr/include/bits/stdio.h \
- /usr/include/bits/stdio2.h /usr/include/unistd.h \
- /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
- /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
- /usr/include/bits/getopt_core.h /usr/include/bits/unistd.h \
- /usr/include/bits/unistd_ext.h /usr/include/string.h \
- /usr/include/strings.h /usr/include/bits/strings_fortified.h \
- /usr/include/bits/string_fortified.h /usr/include/getopt.h \
- /usr/include/bits/getopt_ext.h
+ /usr/include/bits/stdio2.h /usr/include/stdlib.h \
+ /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+ /usr/include/alloca.h /usr/include/bits/stdlib-bsearch.h \
+ /usr/include/bits/stdlib-float.h /usr/include/bits/stdlib.h \
+ /usr/include/getopt.h /usr/include/bits/getopt_ext.h
 /usr/include/stdc-predef.h:
 cgenerator.h:
 ../config.h:
@@ -114,15 +123,37 @@ usb_set.h:
 /usr/include/bits/posix2_lim.h:
 /usr/include/bits/xopen_lim.h:
 /usr/include/bits/uio_lim.h:
-/usr/include/stdlib.h:
-/usr/include/bits/waitflags.h:
-/usr/include/bits/waitstatus.h:
+/usr/include/string.h:
+/usr/include/strings.h:
+/usr/include/bits/strings_fortified.h:
+/usr/include/bits/string_fortified.h:
+/usr/include/math.h:
+/usr/include/bits/math-vector.h:
+/usr/include/bits/libm-simd-decl-stubs.h:
 /usr/include/bits/floatn.h:
 /usr/include/bits/floatn-common.h:
-/usr/include/alloca.h:
-/usr/include/bits/stdlib-bsearch.h:
-/usr/include/bits/stdlib-float.h:
-/usr/include/bits/stdlib.h:
+/usr/include/bits/flt-eval-method.h:
+/usr/include/bits/fp-logb.h:
+/usr/include/bits/fp-fast.h:
+/usr/include/bits/mathcalls-helper-functions.h:
+/usr/include/bits/mathcalls.h:
+/usr/include/bits/mathcalls-narrow.h:
+/usr/include/bits/iscanonical.h:
+/usr/include/errno.h:
+/usr/include/bits/errno.h:
+/usr/include/linux/errno.h:
+/usr/include/asm/errno.h:
+/usr/include/asm-generic/errno.h:
+/usr/include/asm-generic/errno-base.h:
+/usr/include/bits/types/error_t.h:
+/usr/include/unistd.h:
+/usr/include/bits/posix_opt.h:
+/usr/include/bits/environments.h:
+/usr/include/bits/confname.h:
+/usr/include/bits/getopt_posix.h:
+/usr/include/bits/getopt_core.h:
+/usr/include/bits/unistd.h:
+/usr/include/bits/unistd_ext.h:
 /usr/include/stdio.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include/stdarg.h:
 /usr/include/bits/types/__fpos_t.h:
@@ -135,17 +166,12 @@ usb_set.h:
 /usr/include/bits/stdio_lim.h:
 /usr/include/bits/stdio.h:
 /usr/include/bits/stdio2.h:
-/usr/include/unistd.h:
-/usr/include/bits/posix_opt.h:
-/usr/include/bits/environments.h:
-/usr/include/bits/confname.h:
-/usr/include/bits/getopt_posix.h:
-/usr/include/bits/getopt_core.h:
-/usr/include/bits/unistd.h:
-/usr/include/bits/unistd_ext.h:
-/usr/include/string.h:
-/usr/include/strings.h:
-/usr/include/bits/strings_fortified.h:
-/usr/include/bits/string_fortified.h:
+/usr/include/stdlib.h:
+/usr/include/bits/waitflags.h:
+/usr/include/bits/waitstatus.h:
+/usr/include/alloca.h:
+/usr/include/bits/stdlib-bsearch.h:
+/usr/include/bits/stdlib-float.h:
+/usr/include/bits/stdlib.h:
 /usr/include/getopt.h:
 /usr/include/bits/getopt_ext.h:

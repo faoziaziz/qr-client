@@ -2,174 +2,115 @@
 #include<stdio.h>
 
 
-/* this file variable */
-int done = 0;
-libusb_device_handle *handle=NULL;
+#define EP_DATA_IN 0x83
+#define EP_DATA_OUT 0x01
+#define DEVICE_CONFIGURATION 0
 
-static int LIBUSB_CALL hotplug_callback(libusb_context *ctx, libusb_device *dev, libusb_hotplug_event event, void *user_data) {
-  
-  /* this code use for hotplug callback */
-  struct libusb_device_descriptor desc;
-  int rc;
-
-  (void)ctx;
-  (void)dev;
-  (void)event;
-  (void)user_data;
-
-  rc = libusb_get_device_descriptor(dev, &desc);
-  if (LIBUSB_SUCCESS != rc) {
-    fprintf (stderr, "Error getting device descriptor\n");
-  }
-
-  printf ("Device attached: %04x:%04x\n", desc.idVendor, desc.idProduct);
-
-  if (handle) {
-    libusb_close (handle);
-    handle = NULL;
-  }
-
-  rc = libusb_open (dev, &handle);
-  if (LIBUSB_SUCCESS != rc) {
-    fprintf (stderr, "Error opening device\n");
-  }
-
-  done++;
-
-  return 0;
-  
-
-}
-
-/* USB callback */
-static int LIBUSB_CALL hotplug_callback_detach(libusb_context *ctx, libusb_device *dev, libusb_hotplug_event event, void *user_data)
+/* 
+ * 	
+ *	@desc : this function used to write to the device, maybe
+ * */
+int write_to_usb(char * data_qr)
 {
-	(void)ctx;
-	(void)dev;
-	(void)event;
-	(void)user_data;
-
-	printf ("Device detached\n");
-
-	if (handle) {
-		libusb_close (handle);
-		handle = NULL;
-	}
-
-	done++;
-
-	return 0;
-}
-
-
-
-/* this should be function to write usb */
-static void print_devs(libusb_device **devs){
-  libusb_device *dev;
-  int i=0, j=0;
-  uint8_t path[8];
-  while((dev=devs[i++])!=NULL){
-    struct libusb_device_descriptor desc;
-    int r= libusb_get_device_descriptor(dev, &desc);
-
-    if(r<0){
-      fprintf(stderr, "failed to get descriptor ");
-      return;
-    }
-    printf("%04x:%04x (bus %d, device %d)",
-	   desc.idVendor, desc.idProduct,
-	   libusb_get_bus_number(dev), libusb_get_device_address(dev));
-
-    r = libusb_get_port_numbers(dev, path, sizeof(path));
-    if (r > 0) {
-      printf(" path: %d", path[0]);
-      for (j = 1; j < r; j++)
-	printf(".%d", path[j]);
-    }
-    printf("\n");
-  }
-
-}
-
-/* untuk menulis ke usb */
-void write_to_usbi_test(){
-  printf("Write to usb \n");
-  libusb_device **devs;
-  int r;
-  ssize_t cnt;
-
-  r =libusb_init(NULL);
-  if (r<0){
-    return r;
-
-  }
-  cnt = libusb_get_device_list(NULL, &devs);
-
-  if(cnt<0){
-    libusb_exit(NULL);
-    return (int)cnt;
-
-
-  }
-
-  print_devs(devs);
-  libusb_free_device_list(devs, 1);
-  libusb_exit(NULL);
-
-  return 0;
-
-};
-
-void write_to_usb()
-{
-	libusb_hotplug_callback_handle hp[2];
-	int product_id, vendor_id, class_id;
+/*
+	 *	author : declarasi variable 
+	 * */
 	int rc;
+	libusb_context *ctx=NULL;
+	libusb_device_handle *dev_handle;
 
-	vendor_id  = 0x28e0;
-	product_id = 0x0a05;
-	class_id   = LIBUSB_HOTPLUG_MATCH_ANY;
+	int actual = 0;
+	
 
-	rc = libusb_init (NULL);
-	if (rc < 0)
-	{
-		printf("failed to initialise libusb: %s\n", libusb_error_name(rc));
-		//return EXIT_FAILURE;
+	
+
+	/* libusb initialization */
+	rc=libusb_init(&ctx);
+	if(rc<0){
+		printf("Telah terjadi error.i\n");
+		return 1;
+	
 	}
 
-	if (!libusb_has_capability (LIBUSB_CAP_HAS_HOTPLUG)) {
-		printf ("Hotplug capabilities are not supported on this platform\n");
-		libusb_exit (NULL);
-		//return EXIT_FAILURE;
+	/* to get log debug in this usb */
+	libusb_set_debug(ctx, 6);
+	
+	/* dev handle usb to open vid pid */
+	dev_handle = libusb_open_device_with_vid_pid(ctx, 0x28e0, 0x0a05);
+	if(!dev_handle){
+		fprintf(stderr, "error finding usb device\n");
+		return 2;
 	}
 
-	rc = libusb_hotplug_register_callback (NULL, LIBUSB_HOTPLUG_EVENT_DEVICE_ARRIVED, 0, vendor_id,
-		product_id, class_id, hotplug_callback, NULL, &hp[0]);
-	if (LIBUSB_SUCCESS != rc) {
-		fprintf (stderr, "Error registering callback 0\n");
-		libusb_exit (NULL);
-		//return EXIT_FAILURE;
+	/* device configuration kernel active*/
+	if(libusb_kernel_driver_active(dev_handle, DEVICE_CONFIGURATION)==0){
+		printf("Kernel driver active\n");
+		if(libusb_detach_kernel_driver(dev_handle, DEVICE_CONFIGURATION)==0){
+		
+			printf("Kernel driver detached!");
+		}
+	
+	} else {
+		printf("kernel driver inactive \n");
+	
 	}
 
-	rc = libusb_hotplug_register_callback (NULL, LIBUSB_HOTPLUG_EVENT_DEVICE_LEFT, 0, vendor_id,
-		product_id,class_id, hotplug_callback_detach, NULL, &hp[1]);
-	if (LIBUSB_SUCCESS != rc) {
-		fprintf (stderr, "Error registering callback 1\n");
-		libusb_exit (NULL);
-		//	return EXIT_FAILURE;
+	/* harus detach kernel kayaknya */
+
+	libusb_set_auto_detach_kernel_driver(dev_handle, 1);	
+	
+	/* usb interfave claim usb */
+	rc = libusb_claim_interface(dev_handle, DEVICE_CONFIGURATION);
+	if(rc!=0){
+		printf("Cannot Claim Interface\n");
+		return 3;
+	
+	}
+	
+	/* what is set interface alt setting */	
+	//rc = libusb_set_interface_alt_setting(dev_handle, DEVICE_CONFIGURATION, 1);
+	//if(rc !=0){
+	//	printf("tidak bisa configurasi alternatif setting\n");
+	//	return 3;
+	
+//	}
+//
+
+
+	printf("Data \n");
+	printf("S : %s \n", data_qr);
+	printf("panjang qr : %d \n", strlen(data_qr));
+	/* i think we need reset the device */
+	libusb_reset_device(dev_handle);
+	usleep(10000);
+	libusb_clear_halt(dev_handle, EP_DATA_OUT);
+	libusb_clear_halt(dev_handle, EP_DATA_IN);
+	usleep(10000);
+
+	/* write to device */
+	rc= libusb_bulk_transfer(dev_handle, EP_DATA_OUT, data_qr, strlen(data_qr), &actual, 100);
+
+	if(rc==0 && actual==strlen(data_qr)){
+		printf("Writing sukses\n");
+	} else {
+		printf("Eror dalam menulis");
 	}
 
-	while (done < 2) {
-		rc = libusb_handle_events (NULL);
-		if (rc < 0)
-			printf("libusb_handle_events() failed: %s\n", libusb_error_name(rc));
+
+	/* check relase usb */
+	rc = libusb_release_interface(dev_handle, 0);
+	if(rc!=0){
+		printf("Cannot release interface \n");
 	}
 
-	if (handle) {
-		libusb_close (handle);
+	if(dev_handle){
+		libusb_close(dev_handle);
 	}
 
-	libusb_exit (NULL);
+
+	/* lexit program */
+	libusb_exit(ctx);
+	return 0;
 
 	//return EXIT_SUCCESS;
 }

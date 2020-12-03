@@ -51,3 +51,11 @@ cd libmicrohttpd-0.9.71/
 make
 sudo make install
 ```
+
+4. API
+
+untuk mengakses api ini anda bisa menggunakan curl, untuk testing
+
+```bash
+curl -d "qrstring=KodeString" -X POST http://localhost:8888
+```

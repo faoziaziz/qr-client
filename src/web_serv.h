@@ -7,9 +7,16 @@
 #include<string.h>
 #include<stdio.h>
 #include<microhttpd.h>
+#include<stdlib.h>
 
+#define PORT            8888
+#define POSTBUFFERSIZE  512
+#define MAXNAMESIZE     20
+#define MAXANSWERSIZE   512
 
-#define PORT 8888
+#define GET             0
+#define POST            1
+
 
 static int answer_to_connection(void *cls,
 				struct MHD_Connection *connection,

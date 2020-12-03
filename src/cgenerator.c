@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
     int ch;
 
     /* write to usb */
-    write_to_usb("AzizMemangGanteng");
+//    write_to_usb("AzizMemangGanteng");
     start_server();
 
     /* TODO:3001 If you want to add more options, add them here. */

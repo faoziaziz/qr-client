@@ -45,7 +45,29 @@ cgenerator-web_serv.o: web_serv.c /usr/include/stdc-predef.h web_serv.h \
  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
  /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
  /usr/include/bits/getopt_core.h /usr/include/bits/unistd.h \
- /usr/include/bits/unistd_ext.h /usr/include/sys/time.h
+ /usr/include/bits/unistd_ext.h /usr/include/sys/time.h \
+ /usr/include/stdlib.h /usr/include/bits/waitflags.h \
+ /usr/include/bits/waitstatus.h /usr/include/alloca.h \
+ /usr/include/bits/stdlib-bsearch.h /usr/include/bits/stdlib-float.h \
+ /usr/include/bits/stdlib.h usb_set.h /usr/include/libusb-1.0/libusb.h \
+ /usr/include/time.h /usr/include/bits/time.h /usr/include/bits/timex.h \
+ /usr/include/bits/types/struct_tm.h \
+ /usr/include/bits/types/struct_itimerspec.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include-fixed/limits.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include-fixed/syslimits.h \
+ /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+ /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+ /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+ /usr/include/bits/uio_lim.h /usr/include/math.h \
+ /usr/include/bits/math-vector.h /usr/include/bits/libm-simd-decl-stubs.h \
+ /usr/include/bits/flt-eval-method.h /usr/include/bits/fp-logb.h \
+ /usr/include/bits/fp-fast.h \
+ /usr/include/bits/mathcalls-helper-functions.h \
+ /usr/include/bits/mathcalls.h /usr/include/bits/mathcalls-narrow.h \
+ /usr/include/bits/iscanonical.h /usr/include/errno.h \
+ /usr/include/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/asm/errno.h /usr/include/asm-generic/errno.h \
+ /usr/include/asm-generic/errno-base.h /usr/include/bits/types/error_t.h
 /usr/include/stdc-predef.h:
 web_serv.h:
 /usr/include/sys/types.h:
@@ -135,3 +157,43 @@ web_serv.h:
 /usr/include/bits/unistd.h:
 /usr/include/bits/unistd_ext.h:
 /usr/include/sys/time.h:
+/usr/include/stdlib.h:
+/usr/include/bits/waitflags.h:
+/usr/include/bits/waitstatus.h:
+/usr/include/alloca.h:
+/usr/include/bits/stdlib-bsearch.h:
+/usr/include/bits/stdlib-float.h:
+/usr/include/bits/stdlib.h:
+usb_set.h:
+/usr/include/libusb-1.0/libusb.h:
+/usr/include/time.h:
+/usr/include/bits/time.h:
+/usr/include/bits/timex.h:
+/usr/include/bits/types/struct_tm.h:
+/usr/include/bits/types/struct_itimerspec.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include-fixed/limits.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include-fixed/syslimits.h:
+/usr/include/limits.h:
+/usr/include/bits/posix1_lim.h:
+/usr/include/bits/local_lim.h:
+/usr/include/linux/limits.h:
+/usr/include/bits/posix2_lim.h:
+/usr/include/bits/xopen_lim.h:
+/usr/include/bits/uio_lim.h:
+/usr/include/math.h:
+/usr/include/bits/math-vector.h:
+/usr/include/bits/libm-simd-decl-stubs.h:
+/usr/include/bits/flt-eval-method.h:
+/usr/include/bits/fp-logb.h:
+/usr/include/bits/fp-fast.h:
+/usr/include/bits/mathcalls-helper-functions.h:
+/usr/include/bits/mathcalls.h:
+/usr/include/bits/mathcalls-narrow.h:
+/usr/include/bits/iscanonical.h:
+/usr/include/errno.h:
+/usr/include/bits/errno.h:
+/usr/include/linux/errno.h:
+/usr/include/asm/errno.h:
+/usr/include/asm-generic/errno.h:
+/usr/include/asm-generic/errno-base.h:
+/usr/include/bits/types/error_t.h:
